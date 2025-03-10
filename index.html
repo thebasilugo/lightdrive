@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>LightDrive</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		/>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body
+		class="bg-gray-100 font-sans dark:bg-gray-900 transition-colors duration-200"
+	>
+		<div class="container mx-auto px-4 py-8">
+			<header class="flex justify-between items-center mb-8">
+				<h1 class="text-4xl font-bold text-blue-600 dark:text-blue-400">
+					LightDrive
+				</h1>
+				<div>
+					<button
+						id="viewToggle"
+						class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mr-2"
+					>
+						<i class="fas fa-th-list"></i>
+					</button>
+					<!-- <button id="darkModeToggle" class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
+                    <i class="fas fa-moon"></i>
+                </button> -->
+				</div>
+			</header>
+
+			<div class="mb-4 flex flex-wrap items-center">
+				<input
+					type="text"
+					id="searchInput"
+					placeholder="Search files"
+					class="p-2 border rounded mr-2 mb-2 flex-grow"
+				/>
+				<select id="sortSelect" class="p-2 border rounded mr-2 mb-2">
+					<option value="name">Sort by Name</option>
+					<option value="date">Sort by Date</option>
+				</select>
+				<button
+					id="addFileBtn"
+					class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mb-2"
+				>
+					<i class="fas fa-plus mr-2"></i>Add File
+				</button>
+			</div>
+
+			<div
+				id="dropZone"
+				class="border-2 border-dashed border-gray-400 rounded p-8 mb-4 text-center"
+			>
+				<p>Drag and drop files here or click to upload</p>
+				<input type="file" id="fileInput" class="hidden" multiple />
+			</div>
+
+			<div
+				id="fileList"
+				class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+			>
+				<!-- File cards will be dynamically inserted here -->
+			</div>
+		</div>
+
+		<!-- Modal for file editing -->
+		<div
+			id="fileModal"
+			class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center"
+		>
+			<div class="bg-white rounded-lg p-8 max-w-2xl w-full">
+				<h2 class="text-2xl font-bold mb-4">Edit File</h2>
+				<input
+					type="text"
+					id="modalFileName"
+					class="w-full p-2 border rounded mb-4"
+					placeholder="File name"
+				/>
+				<textarea
+					id="modalFileContent"
+					class="w-full p-2 border rounded mb-4"
+					placeholder="File content"
+					rows="10"
+				></textarea>
+				<input
+					type="text"
+					id="modalFileTags"
+					class="w-full p-2 border rounded mb-4"
+					placeholder="Tags (comma-separated)"
+				/>
+				<div class="flex justify-end">
+					<button
+						id="modalCancelBtn"
+						class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 mr-2"
+					>
+						Cancel
+					</button>
+					<button
+						id="modalSaveBtn"
+						class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+					>
+						Save
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<script src="fileSystem.js" type="module"></script>
+		<script src="app.js" type="module"></script>
+	</body>
+</html>
